@@ -10,6 +10,7 @@ namespace karpoff\icrop;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
 use mongosoft\file\UploadBehavior;
+use yii\base\InvalidConfigException;
 use yii\db\BaseActiveRecord;
 use yii\imagine\Image;
 
@@ -60,9 +61,18 @@ class CropImageUploadBehavior extends UploadBehavior
 	private $crops_internal;
 
 	/**
+     * @var array|string tells which image driver to use.
+     * This can be either a single driver name or an array of driver names.
+     * This driver names are available: gmagick, imagick, gd2
+     * If the latter, the first available driver will be used.
+     */
+	public $driver;
+
+	/**
 	 * return array with list of configurations
 	 */
-	public function getConfigurations() {
+	public function getConfigurations()
+	{
 		if ($this->crops_internal === null) {
 			/** @var BaseActiveRecord $model */
 			$model = $this->owner;
@@ -150,6 +160,7 @@ class CropImageUploadBehavior extends UploadBehavior
 			}
 		}
 	}
+
 	/**
 	 * @inheritdoc
 	 */
@@ -166,6 +177,8 @@ class CropImageUploadBehavior extends UploadBehavior
 						$path = $this->getUploadPath($this->attribute);
 						if (!$path)
 							$path = $this->getUploadPath($this->attribute, true);
+						if ($this->driver)
+							Image::$driver = $this->driver;
 						$image = Image::getImagine()->open($path);
 					}
 					$this->createCrop($crop, $image->copy());
@@ -173,6 +186,7 @@ class CropImageUploadBehavior extends UploadBehavior
 			}
 		}
 	}
+
 	/**
 	 * this method crops the image
 	 * @param Array $crop crop config
