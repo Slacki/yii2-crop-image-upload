@@ -10,7 +10,6 @@ namespace karpoff\icrop;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
 use mongosoft\file\UploadBehavior;
-use yii\base\InvalidConfigException;
 use yii\db\BaseActiveRecord;
 use yii\imagine\Image;
 
