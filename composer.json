@@ -1,28 +1,15 @@
 {
-    "name": "slacki/yii2-crop-image-upload",
+    "name": "karpoff/yii2-crop-image-upload",
     "description": "Yii 2 Crop image upload widget",
     "homepage": "https://github.com/karpoff/yii2-crop-image-upload",
     "license": "BSD-3-Clause",
     "type": "yii2-extension",
     "version": "0.0.1",
-    "keywords": [
-        "yii2",
-        "crop",
-        "image",
-        "upload"
-    ],
+    "keywords": ["yii2", "crop", "image", "upload"],
     "authors": [
         {
             "name": "Anton Karpov",
             "email": "karpoff@bk.ru"
-        },
-        {
-            "name": "Bogdan Fedun",
-            "email": "delagics@gmail.com"
-        },
-        {
-            "name": "Kacper Czochara",
-            "email": "kacperczochara@gmail.com"
         }
     ],
     "autoload": {
